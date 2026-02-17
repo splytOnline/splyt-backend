@@ -1,0 +1,53 @@
+{
+  "name": "splyt-backend-ts",
+  "version": "1.0.0",
+  "description": "Splyt backend in TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "tsc --noEmit",
+    "test": "echo \"No tests yet\" && exit 0",
+    "clean": "rm -rf dist",
+    "clean-all": "rm -rf dist && rm -rf node_modules && rm -rf package-lock.json"
+  },
+  "keywords": [],
+  "author": "Splyt",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/splytOnline/splyt-backend.git"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.5.0",
+    "ethers": "^6.16.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "md5": "^2.3.0",
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.8.1",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/crypto-js": "^4.2.2",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/md5": "^2.3.5",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.14.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
