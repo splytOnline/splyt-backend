@@ -373,8 +373,13 @@ class SplitService {
           return p;
         });
         
+        // Handle both Mongoose documents and plain objects (from .lean())
+        const splitObj = typeof (split as any).toObject === 'function' 
+          ? (split as any).toObject() 
+          : { ...split };
+        
         return {
-          ...split.toObject(),
+          ...splitObj,
           isCreator,
           creatorName: isCreator ? undefined : creatorName,
           creatorAddress: isCreator ? undefined : creatorAddress,
@@ -474,8 +479,13 @@ class SplitService {
             return participantObj;
           });
           
+          // Handle both Mongoose documents and plain objects (from .lean())
+          const splitObj = typeof (split as any).toObject === 'function' 
+            ? (split as any).toObject() 
+            : { ...split };
+          
           return {
-            ...split.toObject ? split.toObject() : split,
+            ...splitObj,
             isCreator,
             creatorName: isCreator ? undefined : creatorName,
             creatorAddress: isCreator ? undefined : creatorAddress,
