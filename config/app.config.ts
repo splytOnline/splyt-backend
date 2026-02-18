@@ -58,6 +58,14 @@ const config: AppConfig = {
     secretKey: process.env.AES_SECRET,
     ivLength: 16,
   },
+
+  // Blockchain Configuration
+  blockchain: {
+    splitFactoryContractAddress: process.env.SPLIT_FACTORY_CONTRACT_ADDRESS,
+    gasPayerAddress: process.env.GAS_PAYER_ADDRESS,
+    gasPayerKey: process.env.GAS_PAYER_KEY,
+    rpc: process.env.RPC,
+  },
 };
 
 // Validation function to ensure required environment variables are set

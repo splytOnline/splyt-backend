@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import {
   createSplit,
   getSplitById,
+  getSplits,
   getSplitsByCreator,
   getSplitsByParticipant,
 } from "../controller/split.controller";
@@ -34,11 +35,11 @@ router.use(verifyToken);
 router.post("/create", createSplit);
 
 /**
- * @route   GET /api/split/:splitId
- * @desc    Get split by ID
+ * @route   GET /api/split
+ * @desc    Get all splits for authenticated user (created and participated)
  * @access  Private (requires authentication)
  */
-router.get("/:splitId", getSplitById);
+router.get("/", getSplits);
 
 /**
  * @route   GET /api/split/creator
@@ -53,6 +54,13 @@ router.get("/creator", getSplitsByCreator);
  * @access  Private (requires authentication)
  */
 router.get("/participant", getSplitsByParticipant);
+
+/**
+ * @route   GET /api/split/:splitId
+ * @desc    Get split by ID
+ * @access  Private (requires authentication)
+ */
+router.get("/:splitId", getSplitById);
 
 // ==================================================
 // Exports

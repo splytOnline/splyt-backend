@@ -44,6 +44,13 @@ export interface ServerConfig {
     pdfDir: string;
     certificate_sign_password: string | undefined;
   }
+
+export interface BlockchainConfig {
+    splitFactoryContractAddress: string | undefined;
+    gasPayerAddress: string | undefined;
+    gasPayerKey: string | undefined;
+    rpc: string | undefined;
+  }
   
   export interface AppConfig {
     server: ServerConfig;
@@ -53,4 +60,5 @@ export interface ServerConfig {
     logging: LoggingConfig;
     encryption: EncryptionConfig;
     pdf: PDFConfig;
+    blockchain: BlockchainConfig;
   }

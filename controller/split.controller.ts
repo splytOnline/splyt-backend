@@ -88,6 +88,7 @@ const createSplit = async (
       data: {
         splitId: result.splitId,
         contractAddress: result.contractAddress,
+        txHash: result.txHash,
       },
     });
   } catch (error) {
@@ -233,9 +234,50 @@ const getSplitsByParticipant = async (
   }
 };
 
+/**
+ * Get all splits for authenticated user (created and participated)
+ * @route GET /api/split
+ * @access Private (requires authentication)
+ */
+const getSplits = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    if (!req.user) {
+      const error: CustomError = new Error('User not authenticated');
+      error.status = 401;
+      error.errorCode = ErrorCode.UNAUTHORIZED;
+      error.color = 'red';
+      return next(error);
+    }
+
+    const status = req.query.status as string | undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : undefined;
+    const skip = req.query.skip ? parseInt(req.query.skip as string, 10) : undefined;
+
+    const splits = await splitService.getSplits(req.user.walletAddress, {
+      status,
+      limit,
+      skip,
+    });
+
+    res.status(200).json({
+      success: true,
+      status: 200,
+      message: "Splits retrieved successfully",
+      data: splits,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   createSplit,
   getSplitById,
+  getSplits,
   getSplitsByCreator,
   getSplitsByParticipant,
 };
